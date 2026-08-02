@@ -1,0 +1,12 @@
+from sklearn.mixture import GaussianMixture
+import numpy as np
+
+# Training data
+X = np.array([[1],[2],[3],[10],[11],[12]])
+
+# EM Algorithm
+model = GaussianMixture(n_components=2, random_state=0)
+model.fit(X)
+
+# Predict clusters
+print("Clusters:", model.predict(X))
