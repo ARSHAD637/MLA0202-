@@ -1,0 +1,26 @@
+import pandas as pd
+from io import StringIO
+data = StringIO("""Sky,AirTemp,Humidity,EnjoySport
+Sunny,Warm,Normal,Yes
+Sunny,Warm,High,Yes
+Rainy,Cold,High,No
+Sunny,Warm,High,Yes
+""")
+df = pd.read_csv(data)
+concepts = df.iloc[:, :-1].values
+target = df.iloc[:, -1].values
+# Initialize Specific and General Hypothesis
+S = concepts[0].copy()
+G = ["?"] * len(S)
+# Candidate Elimination
+for i in range(len(concepts)):
+    if target[i] == "Yes":
+        for j in range(len(S)):
+            if S[j] != concepts[i][j]:
+                S[j] = "?"
+    else:
+        for j in range(len(S)):
+            if S[j] != concepts[i][j]:
+                G[j] = S[j]
+print("Specific Hypothesis:", S)
+print("General Hypothesis:", G)
