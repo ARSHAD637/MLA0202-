@@ -1,7 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier
 
-# Training data
-# [Income, Credit Score, Loan Amount]
+
 X = [
     [25000, 550, 100000],
     [30000, 600, 80000],
@@ -11,21 +10,21 @@ X = [
     [80000, 800, 40000]
 ]
 
-# Credit classification
-# 0 = Poor, 1 = Good, 2 = Excellent
+
+
 y = [0, 0, 1, 1, 2, 2]
 
-# Create model
+
 model = DecisionTreeClassifier()
 
-# Train model
+
 model.fit(X, y)
 
-# Predict credit score classification
+
 new_customer = [[55000, 720, 55000]]
 prediction = model.predict(new_customer)
 
-# Display result
+
 if prediction[0] == 0:
     print("Credit Score: Poor")
 elif prediction[0] == 1:
